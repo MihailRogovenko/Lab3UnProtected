@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Add Group</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Add Group</h1>
+      <form
+        th:action="@{/groups/add}"
+        th:object="${group}"
+        method="post"
+        class="form-container"
+      >
+        <label for="name">Group Name:</label>
+        <input type="text" id="name" th:field="*{name}" required />
+        <div
+          th:if="${#fields.hasErrors('name')}"
+          th:errors="*{name}"
+          class="error"
+        ></div>
+
+        <label for="department">Department:</label>
+        <input type="text" id="department" th:field="*{department}" required />
+        <div
+          th:if="${#fields.hasErrors('department')}"
+          th:errors="*{department}"
+          class="error"
+        ></div>
+
+        <label for="curator">Curator:</label>
+        <select id="curator" th:field="*{curator.curatorId}" required>
+          <option value="" disabled selected>Select Curator</option>
+          <option
+            th:each="curator : ${curators}"
+            th:value="${curator.curatorId}"
+            th:text="${curator.name}"
+          ></option>
+        </select>
+        <div
+          th:if="${#fields.hasErrors('curator.curatorId')}"
+          th:errors="*{curator.curatorId}"
+          class="error"
+        ></div>
+
+        <button type="submit" class="button">Save</button>
+      </form>
+      <a href="/groups" class="button back">Back to Groups</a>
+    </div>
+  </body>
+</html>

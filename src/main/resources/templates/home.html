@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>University?</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+  <body>
+    <div class="container" style="text-align: center">
+      <a href="https://github.com/MihailRogovenko" target="_blank">
+        <img
+          src="https://avatars.githubusercontent.com/u/181931282?v=4"
+          alt="My Avatar"
+          class="avatar"
+        />
+      </a>
+
+      <h1>Greetings at this application</h1>
+      <h2>
+        It's an app combining java and databases (supposed to be at least).
+      </h2>
+      <h3>Semi-Freely imitate a university with this set of tables.</h3>
+
+      <div class="navigation">
+        <a th:href="@{/curators}" class="button">Curators</a>
+        <a th:href="@{/groups}" class="button">Groups</a>
+        <a th:href="@{/students}" class="button">Students</a>
+      </div>
+    </div>
+  </body>
+</html>

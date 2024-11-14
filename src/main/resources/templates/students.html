@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Students</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Students</h1>
+      <a href="/students/add" class="button">Add Student</a>
+
+      <form
+        action="/students/execute-query"
+        method="post"
+        class="form-container"
+      >
+        <label for="sqlQuery">SQL Query:</label>
+        <input type="text" id="sqlQuery" name="sqlQuery" required />
+        <button type="submit" class="button">Execute SQL</button>
+      </form>
+
+      <div th:if="${queryResult}" class="sql-result">
+        <table>
+          <thead>
+            <th th:each="col : ${queryResult.columns}" th:text="${col}"></th>
+          </thead>
+          <tbody>
+            <tr th:each="row : ${queryResult.rows}">
+              <td th:each="cell : ${row}" th:text="${cell}"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div th:if="${errorMessage}" class="error-message">
+        <p th:text="${errorMessage}"></p>
+      </div>
+      <a href="/home" class="button back">Return to Main Screen</a>
+    </div>
+  </body>
+</html>

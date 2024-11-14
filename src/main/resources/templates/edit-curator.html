@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Edit Curator</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Edit Curator</h1>
+      <form
+        th:action="@{/curators/update/{id}(id=${curator.curatorId})}"
+        th:object="${curator}"
+        method="post"
+        class="form-container"
+      >
+        <input type="hidden" th:field="*{curatorId}" />
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}" required />
+        <div th:if="${#fields.hasErrors('name')}" class="error-message">
+          <p th:errors="*{name}">Name error</p>
+        </div>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" th:field="*{age}" required />
+        <div th:if="${#fields.hasErrors('age')}" class="error-message">
+          <p th:errors="*{age}">Age error</p>
+        </div>
+
+        <label for="department">Department:</label>
+        <input type="text" id="department" th:field="*{department}" required />
+        <div th:if="${#fields.hasErrors('department')}" class="error-message">
+          <p th:errors="*{department}">Department error</p>
+        </div>
+
+        <button type="submit" class="button">Update</button>
+      </form>
+      <a href="/curators" class="button back">Back to Curators</a>
+    </div>
+  </body>
+</html>

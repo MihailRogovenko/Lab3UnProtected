@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Groups</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Groups</h1>
+      <a href="/groups/add" class="button">Add Group</a>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Curator</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="group : ${groups}">
+            <td th:text="${group.groupId}"></td>
+            <td th:text="${group.name}"></td>
+            <td th:text="${group.department}"></td>
+            <td th:text="${group.curator.name}"></td>
+            <td>
+              <a
+                th:href="@{/groups/edit/{id}(id=${group.groupId})}"
+                class="button edit"
+                >Edit</a
+              >
+              <a
+                th:href="@{/groups/delete/{id}(id=${group.groupId})}"
+                class="button delete"
+                >Delete</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <a href="/home" class="button back">Return to Main Screen</a>
+    </div>
+  </body>
+</html>

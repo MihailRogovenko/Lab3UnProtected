@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Add Curator</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Add Curator</h1>
+      <form
+        th:action="@{/curators/add}"
+        th:object="${curator}"
+        method="post"
+        class="form-container"
+      >
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}" required />
+        <div
+          th:if="${#fields.hasErrors('name')}"
+          th:errors="*{name}"
+          class="error"
+        ></div>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" th:field="*{age}" required />
+        <div
+          th:if="${#fields.hasErrors('age')}"
+          th:errors="*{age}"
+          class="error"
+        ></div>
+
+        <label for="department">Department:</label>
+        <input type="text" id="department" th:field="*{department}" required />
+        <div
+          th:if="${#fields.hasErrors('department')}"
+          th:errors="*{department}"
+          class="error"
+        ></div>
+
+        <button type="submit" class="button">Save</button>
+      </form>
+      <a href="/curators" class="button back">Back to Curators</a>
+    </div>
+  </body>
+</html>

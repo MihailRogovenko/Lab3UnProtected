@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Curators</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Curators</h1>
+      <a href="/curators/add" class="button">Add Curator</a>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Department</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="curator : ${curators}">
+            <td th:text="${curator.curatorId}"></td>
+            <!-- Перевірте правильність іменування -->
+            <td th:text="${curator.name}"></td>
+            <td th:text="${curator.age}"></td>
+            <td th:text="${curator.department}"></td>
+            <td>
+              <a
+                th:href="@{/curators/edit/{id}(id=${curator.curatorId})}"
+                class="button edit"
+                >Edit</a
+              >
+              <a
+                th:href="@{/curators/delete/{id}(id=${curator.curatorId})}"
+                class="button delete"
+                >Delete</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <a href="/home" class="button back">Return to Main Screen</a>
+    </div>
+  </body>
+</html>
